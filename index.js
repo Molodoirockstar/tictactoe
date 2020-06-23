@@ -17,7 +17,19 @@ else{
 	do_moves = JSON.parse(localStorage.getItem("ticTacToeMoves"))[0],cencel_moves = JSON.parse(localStorage.getItem("ticTacToeMoves"))[1];
 	doMove();
 }
+window.addEventListener("storage", function(event) {
+    if (event.key === "ticTacToeMoves" && event.oldValue !== event.newValue) {
+    	if(event.newValue === "[[],[]]"){resetGame();}
+        //console.log(event.newValue);
+        do_moves = JSON.parse(localStorage.getItem("ticTacToeMoves"))[0],cencel_moves = JSON.parse(localStorage.getItem("ticTacToeMoves"))[1];
 
+    //console.log(cencel_moves)
+    cencel_moves.forEach(e => document.getElementById(e['id']).className = "cell");
+    
+	doMove();
+
+	}
+});
 
 function click(event){
 	
